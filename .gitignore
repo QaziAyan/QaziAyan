@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.env.production
+.env.*.local
+!.env.example
+.npm-cache/
+.next/
+dist/
+.data/
+out/
+

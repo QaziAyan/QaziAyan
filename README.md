@@ -10,7 +10,7 @@ The hosted entry point is `server-supabase.js`; `render.yaml` builds the React c
 
 1. Create a Supabase project in the region appropriate for the intended users. In its SQL Editor, run `supabase/setup.sql`.
 2. In Supabase Auth URL Configuration, set the Site URL to the Render service origin, add that origin to allowed redirects, and configure production email delivery/verification. Password recovery redirects to `/?recovery=1` on that same origin.
-3. Connect this repository to Render as a Blueprint using `render.yaml`. Use a paid, always-on web-service plan for a real-user launch. Set `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, and `APP_ORIGIN` in Render’s secret environment-variable UI. Never commit or expose the secret key in browser code.
+3. Connect this repository to Render as a Blueprint using `render.yaml`. The included Render plan is Free for prototyping; its service can sleep when idle. Set `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, `APP_ORIGIN`, and `VITE_CLOUD_MODE=true` in Render’s secret environment-variable UI. Never commit or expose the secret key in browser code.
 4. Wait for `/api/health` to pass, create a test account, and verify signup confirmation, sign-in, owner-isolated sync, export, share expiry/revocation, account deletion, and recovery email delivery before inviting users.
 
 The new Supabase database starts empty. Existing records in `.data/tracker.sqlite` or browser storage are not uploaded automatically; export them first and only migrate them with the account owner's explicit consent. Keep local data backups separately.
