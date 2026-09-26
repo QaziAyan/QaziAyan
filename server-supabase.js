@@ -6,14 +6,14 @@ const crypto=require('node:crypto');
 
 const HOST=process.env.HOST||'0.0.0.0';
 const PORT=Number(process.env.PORT||10000);
-const URL=(process.env.SUPABASE_URL||'').replace(/\/$/,'');
+const SUPABASE_URL=(process.env.SUPABASE_URL||'').replace(/\/$/,'');
 const PUBLIC_KEY=process.env.SUPABASE_PUBLISHABLE_KEY||'';
 const SECRET_KEY=process.env.SUPABASE_SECRET_KEY||process.env.SUPABASE_SERVICE_ROLE_KEY||'';
 const PRODUCTION=process.env.NODE_ENV==='production';
 const MAX_BODY=2*1024*1024;
 const DATA_KEYS=['pt_user','pt_cycles','pt_diet','pt_exercise','pt_settings','pt_trash','pt_symptoms','pt_medication','pt_shares','pt_analytics_cache','pt_feedback'];
 const ARRAY_KEYS=new Set(['pt_cycles','pt_diet','pt_exercise','pt_trash','pt_symptoms','pt_medication','pt_feedback']);
-if(!URL||!PUBLIC_KEY||!SECRET_KEY)throw new Error('Set SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, and SUPABASE_SECRET_KEY before starting the hosted server.');
+if(!SUPABASE_URL||!PUBLIC_KEY||!SECRET_KEY)throw new Error('Set SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, and SUPABASE_SECRET_KEY before starting the hosted server.');
 
 class HttpError extends Error{constructor(status,message){super(message);this.status=status;}}
 function send(res,status,value,headers={}){res.writeHead(status,{'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff','referrer-policy':'no-referrer','permissions-policy':'camera=(), microphone=(), geolocation=()',...headers});res.end(JSON.stringify(value));}
@@ -24,7 +24,7 @@ function authCookies(access,refresh){return [`pt_access=${encodeURIComponent(acc
 function clearCookies(){return [`pt_access=; ${cookieAttrs}; Max-Age=0`,`pt_refresh=; ${cookieAttrs}; Max-Age=0`];}
 function validateData(value){if(!value||typeof value!=='object'||Array.isArray(value))return null;const data={};for(const key of DATA_KEYS){const v=value[key];if(v===undefined){data[key]=ARRAY_KEYS.has(key)?[]:key==='pt_settings'?{}:null;continue;}if(ARRAY_KEYS.has(key)?!Array.isArray(v):v!==null&&(typeof v!=='object'||Array.isArray(v)))return null;data[key]=v;}data.pt_shares={};return data;}
 function emptyData(user){return {pt_user:{id:user.id,email:user.email,name:user.user_metadata?.name||'',avgCycle:28},pt_cycles:[],pt_diet:[],pt_exercise:[],pt_settings:{},pt_trash:[],pt_symptoms:[],pt_medication:[],pt_shares:{},pt_analytics_cache:null,pt_feedback:[]};}
-async function supa(path,{method='GET',body,token,secret=false,prefer}={}){const key=secret?SECRET_KEY:PUBLIC_KEY;const headers={apikey:key,authorization:`Bearer ${secret?SECRET_KEY:token||PUBLIC_KEY}`,...(body!==undefined?{'content-type':'application/json'}:{}),...(prefer?{prefer}:{})};let response;try{response=await fetch(`${URL}${path}`,{method,headers,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store'});}catch{throw new HttpError(502,'Could not reach the account service.');}const text=await response.text();let payload=null;try{payload=text?JSON.parse(text):null;}catch{payload={message:text};}if(!response.ok){const message=payload?.msg||payload?.message||payload?.error_description||payload?.error||'Account service request failed.';throw new HttpError(response.status===429?429:response.status>=500?502:response.status,String(message).slice(0,220));}return payload;}
+async function supa(path,{method='GET',body,token,secret=false,prefer}={}){const key=secret?SECRET_KEY:PUBLIC_KEY;const headers={apikey:key,authorization:`Bearer ${secret?SECRET_KEY:token||PUBLIC_KEY}`,...(body!==undefined?{'content-type':'application/json'}:{}),...(prefer?{prefer}:{})};let response;try{response=await fetch(`${SUPABASE_URL}${path}`,{method,headers,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store'});}catch{throw new HttpError(502,'Could not reach the account service.');}const text=await response.text();let payload=null;try{payload=text?JSON.parse(text):null;}catch{payload={message:text};}if(!response.ok){const message=payload?.msg||payload?.message||payload?.error_description||payload?.error||'Account service request failed.';throw new HttpError(response.status===429?429:response.status>=500?502:response.status,String(message).slice(0,220));}return payload;}
 async function audit(userId,event){try{await supa('/rest/v1/pt_audit',{method:'POST',secret:true,prefer:'return=minimal',body:{user_id:userId,event}});}catch{}}
 async function getUserData(user){const rows=await supa(`/rest/v1/pt_tracker_data?select=data&user_id=eq.${encodeURIComponent(user.id)}&limit=1`,{token:user.access});return rows?.[0]?.data||emptyData(user.authUser);}
 async function putUserData(user,input){const data=validateData(input);if(!data)throw new HttpError(400,'Invalid tracker data.');data.pt_user={...(data.pt_user||{}),id:user.id,email:user.authUser.email};await supa('/rest/v1/pt_tracker_data?on_conflict=user_id',{method:'POST',token:user.access,prefer:'resolution=merge-duplicates,return=minimal',body:{user_id:user.id,data,updated_at:new Date().toISOString()}});return data;}
