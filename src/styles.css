@@ -313,3 +313,105 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .medication-form input { min-width:0; width:100%; }
 @media (max-width:1023px) { .medication-form { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
 
+/* Dark palette: keep every template on the same readable neutral foundation. */
+.app-shell.app-dark {
+  --ink:#f1f5f9;
+  --muted:#c3ced9;
+  --line:#3b4a59;
+  --paper:#101923;
+  --surface:#192632;
+  --surface-raised:rgba(25,38,50,.98);
+  --teal:#83d1c6;
+  --coral:#ffa196;
+  --dark-accent:#a8e3dc;
+  --shadow-soft:0 12px 30px rgba(0,0,0,.25);
+  --shadow-float:0 22px 48px rgba(0,0,0,.38);
+  color:var(--ink);
+  color-scheme:dark;
+  background-color:var(--paper);
+}
+.app-shell.app-dark.theme-flower { --dark-accent:#f0b8c7; background-image:linear-gradient(135deg,#101923 0%,#202531 62%,#30232c 100%); }
+.app-shell.app-dark.theme-teddy { --dark-accent:#e8c59d; background-image:linear-gradient(135deg,#101923 0%,#202a32 62%,#30291f 100%); }
+.app-shell.app-dark.theme-chocolate { --dark-accent:#e8b89f; background-image:linear-gradient(135deg,#101923 0%,#202831 62%,#30241f 100%); }
+.app-shell.app-dark .surface,
+.app-shell.app-dark .page-note { background-color:var(--surface-raised); border-color:var(--line); color:var(--ink); }
+.app-shell.app-dark aside.no-print,
+.app-shell.app-dark header.no-print,
+.app-shell.app-dark .mobile-navigation { background-color:rgba(22,34,45,.97); border-color:var(--line); }
+.app-shell.app-dark input,
+.app-shell.app-dark select,
+.app-shell.app-dark textarea { background-color:#121e28; color:var(--ink); border-color:#435363; }
+.app-shell.app-dark input::placeholder,
+.app-shell.app-dark textarea::placeholder { color:#aebdca; opacity:1; }
+.app-shell.app-dark button:focus-visible,
+.app-shell.app-dark a:focus-visible,
+.app-shell.app-dark input:focus-visible,
+.app-shell.app-dark select:focus-visible,
+.app-shell.app-dark textarea:focus-visible { outline-color:#91e0d5; }
+.app-shell.app-dark .text-slate-700 { color:#e8eef4; }
+.app-shell.app-dark .text-slate-600,
+.app-shell.app-dark .text-slate-500 { color:#c3ced9; }
+.app-shell.app-dark .text-slate-400,
+.app-shell.app-dark .text-slate-300 { color:#adbdc9; }
+.app-shell.app-dark .text-medical-600,
+.app-shell.app-dark .text-medical-700,
+.app-shell.app-dark .text-medical-800 { color:var(--dark-accent); }
+.app-shell.app-dark .text-rose-700,
+.app-shell.app-dark .text-rose-800,
+.app-shell.app-dark .text-rose-900 { color:#ffc4bd; }
+.app-shell.app-dark .text-amber-700,
+.app-shell.app-dark .text-amber-900,
+.app-shell.app-dark .text-amber-950 { color:#f4d99a; }
+.app-shell.app-dark .text-emerald-700,
+.app-shell.app-dark .text-emerald-800 { color:#aee0bf; }
+.app-shell.app-dark .bg-white,
+.app-shell.app-dark .bg-white\/70,
+.app-shell.app-dark .bg-white\/80,
+.app-shell.app-dark .bg-white\/90,
+.app-shell.app-dark .bg-white\/95 { background-color:#192632; }
+.app-shell.app-dark .bg-slate-50,
+.app-shell.app-dark .bg-slate-100 { background-color:#22313e; }
+.app-shell.app-dark .bg-medical-50,
+.app-shell.app-dark .bg-\[\#eff8f7\] { background-color:color-mix(in srgb,var(--dark-accent) 12%,#192632); }
+.app-shell.app-dark .bg-medical-100 { background-color:color-mix(in srgb,var(--dark-accent) 18%,#192632); }
+.app-shell.app-dark .bg-rose-50 { background-color:#38262b; }
+.app-shell.app-dark .bg-rose-100 { background-color:#4a2e34; }
+.app-shell.app-dark .bg-rose-600 { background-color:#a64f52; }
+.app-shell.app-dark .bg-amber-50 { background-color:#39331f; }
+.app-shell.app-dark .bg-amber-100 { background-color:#4a4025; }
+.app-shell.app-dark .bg-amber-600 { background-color:#8c6725; }
+.app-shell.app-dark .bg-emerald-100 { background-color:#213b31; }
+.app-shell.app-dark .bg-emerald-600 { background-color:#286447; }
+.app-shell.app-dark .bg-slate-900 { background-color:#0b1219; }
+.app-shell.app-dark .bg-slate-950\/40 { background-color:rgba(0,0,0,.76); }
+.app-shell.app-dark .border-slate-100,
+.app-shell.app-dark .border-slate-200,
+.app-shell.app-dark .border-rose-200,
+.app-shell.app-dark .border-amber-200 { border-color:#465666; }
+.app-shell.app-dark .hover\:bg-slate-50:hover { background-color:#273846; }
+.app-shell.app-dark .hover\:bg-rose-50:hover { background-color:#50343b; }
+.app-shell.app-dark .mobile-primary button { color:#c3ced9; }
+.app-shell.app-dark .mobile-primary button.active { color:var(--dark-accent); background-color:color-mix(in srgb,var(--dark-accent) 12%,#192632); }
+.app-shell.app-dark .mobile-nav-indicator { background:var(--dark-accent); }
+.app-shell.app-dark .calendar-tag { background-color:#253440; color:#e8eef4; }
+.app-shell.app-dark .calendar-tag-period { background:#472b31; color:#ffc4bd; }
+.app-shell.app-dark .calendar-tag-fertile { background:#213b31; color:#aee0bf; }
+.app-shell.app-dark .calendar-tag-ovulation { background:#40371f; color:#f4d99a; }
+.app-shell.app-dark .catalog-filters button.selected { color:var(--dark-accent); background-color:color-mix(in srgb,var(--dark-accent) 12%,#192632); border-color:var(--dark-accent); }
+.app-shell.app-dark .medication-summary,
+.app-shell.app-dark .symptom-week-panel,
+.app-shell.app-dark .settings-group,
+.app-shell.app-dark .privacy-overview>div { background-color:#1d2c38; }
+.app-shell.app-dark .activity-type { background-color:#263541; color:#e8eef4; }
+.app-shell.app-dark .activity-period,
+.app-shell.app-dark .activity-food { background-color:#39272e; color:#f0b8c7; }
+.app-shell.app-dark .activity-movement { background-color:#213b31; color:#aee0bf; }
+.app-shell.app-dark .activity-symptom { background-color:#40371f; color:#f4d99a; }
+.app-shell.app-dark .page-empty-state>span,
+.app-shell.app-dark .dashboard-empty>span { background-color:color-mix(in srgb,var(--dark-accent) 14%,#192632); color:var(--dark-accent); }
+.app-shell.app-dark .cycle-progress-ring::before { background:#192632; }
+.app-shell.app-dark .cycle-milestone i { background:#121e28; color:#c3ced9; }
+.app-shell.app-dark .cycle-milestone.done i,
+.app-shell.app-dark .cycle-milestone.current i { background:#213b38; color:#a8e3dc; }
+.app-shell.app-dark .symptom-week-day i { background:var(--teal); }
+
