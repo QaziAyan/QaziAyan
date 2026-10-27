@@ -415,3 +415,80 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .app-shell.app-dark .cycle-milestone.current i { background:#213b38; color:#a8e3dc; }
 .app-shell.app-dark .symptom-week-day i { background:var(--teal); }
 
+/* High-contrast black mode: preserve the black canvas and tune text only. */
+.app-shell.app-dark {
+  --ink:#ffffff;
+  --muted:#d0d5dc;
+  --dark-accent:#baf4eb;
+  --paper:#000000;
+  --surface:#080808;
+  --surface-raised:#080808;
+  background:#000000;
+  background-image:none;
+  color:#ffffff;
+}
+.app-shell.app-dark.theme-flower,
+.app-shell.app-dark.theme-teddy,
+.app-shell.app-dark.theme-chocolate { background:#000000; background-image:none; }
+.app-shell.app-dark .surface,
+.app-shell.app-dark .page-note { background:#080808; color:#ffffff; }
+.app-shell.app-dark aside.no-print,
+.app-shell.app-dark header.no-print,
+.app-shell.app-dark .mobile-navigation,
+.app-shell.app-dark input,
+.app-shell.app-dark select,
+.app-shell.app-dark textarea,
+.app-shell.app-dark .bg-white,
+.app-shell.app-dark .bg-white\/70,
+.app-shell.app-dark .bg-white\/80,
+.app-shell.app-dark .bg-white\/90,
+.app-shell.app-dark .bg-white\/95,
+.app-shell.app-dark .bg-slate-50,
+.app-shell.app-dark .bg-slate-100,
+.app-shell.app-dark .bg-medical-50,
+.app-shell.app-dark .bg-medical-100,
+.app-shell.app-dark .bg-\[\#eff8f7\],
+.app-shell.app-dark .bg-rose-50,
+.app-shell.app-dark .bg-rose-100,
+.app-shell.app-dark .bg-amber-50,
+.app-shell.app-dark .bg-amber-100,
+.app-shell.app-dark .bg-emerald-100,
+.app-shell.app-dark .medication-summary,
+.app-shell.app-dark .symptom-week-panel,
+.app-shell.app-dark .settings-group,
+.app-shell.app-dark .privacy-overview>div,
+.app-shell.app-dark .activity-type,
+.app-shell.app-dark .activity-period,
+.app-shell.app-dark .activity-food,
+.app-shell.app-dark .activity-movement,
+.app-shell.app-dark .activity-symptom,
+.app-shell.app-dark .calendar-tag,
+.app-shell.app-dark .calendar-tag-period,
+.app-shell.app-dark .calendar-tag-fertile,
+.app-shell.app-dark .calendar-tag-ovulation { background-color:#080808; }
+.app-shell.app-dark .text-slate-700,
+.app-shell.app-dark .text-slate-600,
+.app-shell.app-dark .text-slate-500,
+.app-shell.app-dark .text-slate-400,
+.app-shell.app-dark .text-slate-300 { color:#e4e7eb; }
+.app-shell.app-dark .text-medical-600,
+.app-shell.app-dark .text-medical-700,
+.app-shell.app-dark .text-medical-800 { color:var(--dark-accent); }
+.app-shell.app-dark .text-rose-700,
+.app-shell.app-dark .text-rose-800,
+.app-shell.app-dark .text-rose-900 { color:#ffb8c1; }
+.app-shell.app-dark .text-amber-700,
+.app-shell.app-dark .text-amber-900,
+.app-shell.app-dark .text-amber-950 { color:#ffe08c; }
+.app-shell.app-dark .text-emerald-700,
+.app-shell.app-dark .text-emerald-800 { color:#a9efbd; }
+.app-shell.app-dark .mobile-primary button { color:#e4e7eb; }
+.app-shell.app-dark .mobile-primary button.active,
+.app-shell.app-dark .mobile-nav-indicator { color:var(--dark-accent); background-color:#080808; }
+.app-shell.app-dark .catalog-filters button.selected { color:var(--dark-accent); background-color:#080808; border-color:var(--dark-accent); }
+.app-shell.app-dark .calendar-tag-period { color:#ffb8c1; }
+.app-shell.app-dark .calendar-tag-fertile { color:#a9efbd; }
+.app-shell.app-dark .calendar-tag-ovulation { color:#ffe08c; }
+.app-shell.app-dark input::placeholder,
+.app-shell.app-dark textarea::placeholder { color:#c4c9d1; }
+
